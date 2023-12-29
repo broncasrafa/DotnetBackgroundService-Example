@@ -32,7 +32,7 @@ public class My1BackgroundService : BackgroundService
             else
             {
                 _logger.LogInformation($"[{DateTime.Now}] Serviço 1 aguardando por novas solicitações....");
-                await Task.Delay(TimeSpan.FromSeconds(3));
+                await Task.Delay(TimeSpan.FromSeconds(5));
             }
         }
     }

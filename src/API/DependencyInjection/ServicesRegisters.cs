@@ -49,7 +49,7 @@ public static class ServicesRegisters
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
                                 .EnableSensitiveDataLogging()
                                 .EnableDetailedErrors()
-                                .LogTo(Console.WriteLine, LogLevel.Information), ServiceLifetime.Scoped);
+                                /*.LogTo(Console.WriteLine, LogLevel.Information)*/, ServiceLifetime.Scoped);
         return services;
     }
 }
