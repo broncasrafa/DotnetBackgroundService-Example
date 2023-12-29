@@ -30,7 +30,7 @@ public class My2BackgroundService : BackgroundService
             }
             else
             {
-                _logger.LogInformation($"[{DateTime.Now}] Serviço 2 aguardando por novas solicitações....");
+                _logger.LogInformation($"[{DateTime.Now}] 🤟🏾 Serviço 2 aguardando por novas solicitações....");
                 await Task.Delay(TimeSpan.FromSeconds(5));
             }
         }
@@ -45,7 +45,7 @@ public class My2BackgroundService : BackgroundService
         // 1º atualiza a solicitacao (DataProcessamento_2_Inicio = DateTime.Now, IdStatusProcessamento_2 = Em Processamento)
         var solicitacao = solicitacoesDoDia.FirstOrDefault();
         
-        _logger.LogInformation($"[{DateTime.Now}] Serviço 2 está executando para o ID: {solicitacao.Id} ....");
+        _logger.LogInformation($"[{DateTime.Now}] ♥️ Serviço 2 está executando para o ID: {solicitacao.Id} ....");
 
         solicitacao.DataInicioProcessamento2 = DateTime.Now;
         solicitacao.IdStatusProcessamento2 = (int)StatusProcessamento.Em_Processamento;
@@ -59,7 +59,7 @@ public class My2BackgroundService : BackgroundService
         solicitacao.IdStatusProcessamento2 = (int)StatusProcessamento.Concluido;
         await solicitacaoService.UpdateAsync(solicitacao);
 
-        _logger.LogInformation($"[{DateTime.Now}] Serviço 2 finalizado para o ID: {solicitacao.Id} ....");
+        _logger.LogInformation($"[{DateTime.Now}] ✅ Serviço 2 finalizado para o ID: {solicitacao.Id} ....");
 
         await Task.CompletedTask;
     }

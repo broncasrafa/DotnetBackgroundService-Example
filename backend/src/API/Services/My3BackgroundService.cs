@@ -30,7 +30,7 @@ public class My3BackgroundService : BackgroundService
             }
             else
             {
-                _logger.LogInformation($"[{DateTime.Now}] Serviço 3 aguardando por novas solicitações....");
+                _logger.LogInformation($"[{DateTime.Now}] 🖖🏾 Serviço 3 aguardando por novas solicitações....");
                 await Task.Delay(TimeSpan.FromSeconds(5));
             }
         }
@@ -45,7 +45,7 @@ public class My3BackgroundService : BackgroundService
         // 1º atualiza a solicitacao (DataProcessamento_3_Inicio = DateTime.Now, IdStatusProcessamento_3 = Em Processamento)
         var solicitacao = solicitacoesDoDia.FirstOrDefault();
 
-        _logger.LogInformation($"[{DateTime.Now}] Serviço 3 está executando para o ID: {solicitacao.Id} ....");
+        _logger.LogInformation($"[{DateTime.Now}] ♥️ Serviço 3 está executando para o ID: {solicitacao.Id} ....");
 
         solicitacao.DataInicioProcessamento3 = DateTime.Now;
         solicitacao.IdStatusProcessamento3 = (int)StatusProcessamento.Em_Processamento;
@@ -61,7 +61,7 @@ public class My3BackgroundService : BackgroundService
         solicitacao.IdStatusProcessamento3 = (int)StatusProcessamento.Concluido;
         await solicitacaoService.UpdateAsync(solicitacao);
 
-        _logger.LogInformation($"[{DateTime.Now}] Serviço 3 finalizado para o ID: {solicitacao.Id} ....");
+        _logger.LogInformation($"[{DateTime.Now}] ✅ Serviço 3 finalizado para o ID: {solicitacao.Id} ....");
 
         await Task.CompletedTask;
     }
