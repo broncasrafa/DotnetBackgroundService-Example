@@ -36,6 +36,12 @@ public class SolicitacaoService : ISolicitacaoService
         var result = _mapper.Map<SolicitacaoResponse>(solicitacao);
         return result;
     }
+    public async Task<SolicitacaoResponse> FindByIdAsync(int id)
+    {
+        var solicitacao = await _repository.GetByIdAsync(id);
+        var response = _mapper.Map<SolicitacaoResponse>(solicitacao);
+        return response;
+    }
 
     public async Task<IEnumerable<SolicitacaoResponse>> FindAllByUserIdAsync(int userId)
     {
@@ -56,10 +62,39 @@ public class SolicitacaoService : ISolicitacaoService
         return response;
     }
 
-    public async Task<SolicitacaoResponse> FindByIdAsync(int id)
+    public async Task<IEnumerable<SolicitacaoResponse>> FindAllToBeProcessedByService1Async()
     {
-        var solicitacao = await _repository.GetByIdAsync(id);
-        var response = _mapper.Map<SolicitacaoResponse>(solicitacao);
-        return response;
+        var lista = await FindAllByDateNowAsync();
+        return lista
+                .Where(c => c.IdStatus == (int)StatusProcessamento.Solicitado && 
+                            c.IdStatusProcessamento1 == (int)StatusProcessamento.Aguardando_Processamento)
+                .ToList();                        
+    }
+    public async Task<IEnumerable<SolicitacaoResponse>> FindAllToBeProcessedByService2Async()
+    {
+        var lista = await FindAllByDateNowAsync();
+        return lista
+                .Where(c => c.IdStatus == (int)StatusProcessamento.Em_Processamento &&
+                            c.IdStatusProcessamento1 == (int)StatusProcessamento.Concluido &&
+                            c.IdStatusProcessamento2 == (int)StatusProcessamento.Aguardando_Processamento)
+                .ToList();
+    }
+    public async Task<IEnumerable<SolicitacaoResponse>> FindAllToBeProcessedByService3Async()
+    {
+        var lista = await FindAllByDateNowAsync();
+        return lista
+                .Where(c => c.IdStatus == (int)StatusProcessamento.Em_Processamento &&
+                            c.IdStatusProcessamento1 == (int)StatusProcessamento.Concluido &&
+                            c.IdStatusProcessamento2 == (int)StatusProcessamento.Concluido &&
+                            c.IdStatusProcessamento3 == (int)StatusProcessamento.Aguardando_Processamento)
+                .ToList();
     }
 }
+/*
+1	Solicitado
+2	Aguardando Processamento
+3	Em Processamento
+4	Concluido
+5	Não Executado
+6	Erro
+*/

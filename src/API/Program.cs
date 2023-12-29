@@ -11,7 +11,9 @@ IConfiguration configuration = new ConfigurationBuilder()
         .Build();
 
 // Add services to the container.
-builder.Services.AddHostedService<MyBackgroundService>();
+builder.Services.AddHostedService<My1BackgroundService>();
+builder.Services.AddHostedService<My2BackgroundService>();
+builder.Services.AddHostedService<My3BackgroundService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
