@@ -25,7 +25,8 @@ public class SolicitacaoRepository : ISolicitacaoRepository
             .Include(c => c.StatusProcessamento1)
             .Include(c => c.StatusProcessamento2)
             .Include(c => c.StatusProcessamento3)
-            .Where(c => c.IdUsuario == userId)
+            .Where(c => c.IdUsuario == userId && c.DataSolicitacao.Date == DateTime.Now.Date)
+            .OrderByDescending(c => c.Id)
             .ToListAsync();
         return list;
     }
