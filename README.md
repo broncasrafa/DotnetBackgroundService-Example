@@ -10,3 +10,7 @@ Projeto de api REST para praticar o uso de background services em .net e C#
 ## Fluxo
 O usuario realiza uma solicitação informando um documento (CNPJ) e 3 processos serão executados nessa solicitação. Para não deixar o usuário parado esperando o termino do processamento os 3 processos serão executados em background e seus status atualizados para que 
 a aplicação cliente possa acompanhar o andamento.
+
+## Execução
+- rodar o comando dotnet run no diretorio onde se encontra o .csproj
+- com a api rodando, executar o comando npm run start ou ng serve no projeto do frontend
