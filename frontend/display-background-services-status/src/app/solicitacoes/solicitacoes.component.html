@@ -1,0 +1,85 @@
+<div class="container">
+    <h1 class="mt-5">Solicitações</h1>
+    <p class="lead">
+        O usuario realiza uma solicitação informando um documento (CNPJ) e 3 processos serão executados nessa solicitação. 
+        Para não deixar o usuário parado esperando o termino do processamento os 3 processos serão executados em background e 
+        seus status atualizados para que a aplicação cliente possa acompanhar o andamento.
+    </p>   
+
+    <div class="solicitacao">
+        <div class="row">
+            <div class="col-12">
+                <div class="row g-3">
+                    <div class="col-auto">
+                      <label for="inputDocument" class="visually-hidden">Documento</label>
+                      <input type="text" class="form-control" id="inputDocument" maxlength="14" [(ngModel)]="document" placeholder="informe o cnpj">
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-custom mb-3" (click)="onClick_gerarCNPJ()">Gerar CNPJ</button>
+                      </div>
+                    <div class="col-auto">
+                      <button type="button" class="btn btn-primary mb-3" (click)="onClick_processar()">Processar</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legenda-status">
+        <div class="row div col-12">
+            <ul class="list-unstyled">
+                <li>status processamento:
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check-square-o box-concluido " aria-hidden="true"></i> concluído</li>
+                      <li><i class="fa fa-check-square-o box-em_processamento" aria-hidden="true"></i> em processamento</li>
+                      <li><i class="fa fa-check-square-o box-erro" aria-hidden="true"></i> erro</li>
+                      <li><i class="fa fa-check-square-o" aria-hidden="true"></i> aguardando processamento</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="table-result">
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">data solicitação</th>
+                        <th scope="col">documento</th>
+                        <th scope="col">status</th>
+                        <th scope="col" class="text-center">process_1</th>
+                        <th scope="col" class="text-center">process_2</th>
+                        <th scope="col" class="text-center">process_3</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let request of solicitacoes; let i = index;">
+                        <th scope="row">{{request.id}}</th>
+                        <td>{{request.dataSolicitacao | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                        <td>{{request.documento}}</td>
+                        <td>{{request.statusSolicitacao}}</td>
+                        <td>
+                            <div class="text-center">
+                                <app-box-status-icon [idStatus]="request.idStatusProcessamento1"></app-box-status-icon>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <app-box-status-icon [idStatus]="request.idStatusProcessamento2"></app-box-status-icon> 
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                <app-box-status-icon [idStatus]="request.idStatusProcessamento3"></app-box-status-icon>    
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</div>

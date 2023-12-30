@@ -1,0 +1,8 @@
+<div>
+    <i *ngIf="idStatus == statusSolicitacaoEnum.Concluido" class="fa fa-check-square-o box-concluido " aria-hidden="true"></i>
+    <i *ngIf="idStatus == statusSolicitacaoEnum.Em_Processamento" class="fa fa-check-square-o box-em_processamento" aria-hidden="true"></i>
+    <i *ngIf="idStatus == statusSolicitacaoEnum.Erro" class="fa fa-check-square-o box-erro" aria-hidden="true"></i>
+    <i *ngIf="idStatus !== statusSolicitacaoEnum.Concluido &&
+              idStatus !== statusSolicitacaoEnum.Em_Processamento &&
+              idStatus !== statusSolicitacaoEnum.Erro" class="fa fa-check-square-o" aria-hidden="true"></i>
+</div>
