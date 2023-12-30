@@ -17,6 +17,10 @@ builder.Services.AddHostedService<My3BackgroundService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 builder.Services.AddServices();
 builder.Services.AddRepositories();
 builder.Services.AddAutoMapper();
@@ -31,6 +35,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseCors("corsapp");
 app.MapControllers();
 
 app.Run();
