@@ -28,7 +28,7 @@ public class SolicitacaoEntity
     public SolicitacaoEntity(string documento, int idUsuario)
     {
         Documento = documento;
-        IdUsuario = idUsuario;
+        IdUsuario = 86;
         DataSolicitacao = DateTime.Now;
         IdStatus = (int)StatusProcessamento.Solicitado;
         IdStatusProcessamento1 = (int)StatusProcessamento.Aguardando_Processamento;
